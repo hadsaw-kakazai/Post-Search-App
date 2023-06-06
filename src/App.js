@@ -1,25 +1,22 @@
+import { createContext, useState } from 'react';
+import Post from './Components/Post';
+import Search from './Components/Search';
 import logo from './logo.svg';
-import './App.css';
 
+const ContextPosts = createContext()
 function App() {
+
+  const [posts,setPosts] = useState([]) 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ContextPosts.Provider value={{posts,setPosts}}>
+        <Search/>
+        <Post/>
+      </ContextPosts.Provider>
+     
     </div>
   );
 }
 
 export default App;
+export {ContextPosts}
